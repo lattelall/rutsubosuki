@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>記事詳細</title>
+        <!-- CSS読み込み(Bootstrapとrutsubosuki汎用設定) -->
+<link href="../css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="../css/rutsubosukistyle.css">
+<!-- script読み込む -->
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script
+	src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+<script src="js/bootstrap.min.js"></script>
+    <style>
+    	body{
+    	font-family:Meiryo,Georgia, "Times New Roman",Times,serif;
+    	color:#f8f9fa;
+    	background:#343a40;}
+    </style>
+  </head>
+	<body>
+<!-- 下部固定のナビゲーションバー -->
+    	<div class = "fixed-bottom container-fluid text-center text-truncate">
+    			<div class = "row">
+    				<div class = "col-auto padding-lr-0 rounded-pill bg-light">
+    					<a class = "btn btn-sm text-secondary" role = "button" href="../">Rutsubosuki</a>
+    				</div>
+    				<div class = "col-auto padding-lr-0 rounded-pill bg-light">
+    					<a class = "btn btn-sm text-secondary" role = "button" href="../article">記事一覧</a>
+    				</div>
+
+    			</div>
+		</div>
+<!-- 下部固定のナビゲーションバー -->
+
+<!-- 本文表示、左半分に本文、右にその他情報 -->
+		<div class="container-fluid">
+			<div class = "row">
+		    	<div class = "col-12 h3" th:text=${article['title']}></div>
+				<div class="col-sm-12 col-md-3">
+					<div class = "row text-right">
+    					<div class = "col-12 col-xl-6 text-truncate small" th:text="'登録：' + ${#dates.format(article['articleDate'], 'yyyy/MM/dd')}" ></div>
+    					<div class = "col-12 col-xl-6 text-truncate small" th:text="'更新：' + ${#dates.format(article['lastUpdate'], 'yyyy/MM/dd')}"></div>
+    					<div class = "col-6 col-md-12 col-xl-6 text-truncate" th:text="${article['tag1']}"></div>
+    					<div class = "col-6 col-md-12 col-xl-6 text-truncate" th:text="${article['tag2']}"></div>
+    					<div class = "col-6 col-md-12 col-xl-6 text-truncate" th:text="${article['tag3']}"></div>
+    					<div class = "col-6 col-md-12 col-xl-6 text-truncate" th:text="${article['tag4']}"></div>
+    					<div class = "col-6 col-md-12 col-xl-6 text-truncate" th:text="${article['tag5']}"></div>
+    					<div class = "col-6 col-md-12 col-xl-6 text-truncate" th:text="${article['tag6']}"></div>
+    					<div class = "col-6 col-md-12 col-xl-6 text-truncate" th:text="${article['tag7']}"></div>
+	    			</div>
+    			</div>
+			<div class = "col-md-9 d-inline text-justify" th:text=${article['text']}></div>
+		</div>
+	</div>
+<!-- 画像表示、PCで4枚、スマホで2*2 -->
+		<div class = "container-fluid">
+			<div  id="images" class = "row" align="center">
+    	    	<div class = "col-6 col-md-3">
+        			<img th:if ="${article['articleimage1']} != null " th:src="@{/images/} + ${article['articleimage1']}" alt="[Get Picture]" class="img-fluid" type = "button" data-toggle="modal" data-target = "#moda1">
+        		</div>
+        		<div class = "col-6 col-md-3">
+        			<img th:if ="${article['articleimage2']} != null " th:src="@{/images/} + ${article['articleimage2']}" alt="[Get Picture]" class="img-fluid" type = "button" data-toggle="modal" data-target = "#moda2">
+        		</div>
+        		<div class = "col-6 col-md-3">
+        			<img th:if ="${article['articleimage3']} != null " th:src="@{/images/} + ${article['articleimage3']}" alt="[Get Picture]" class="img-fluid" type = "button" data-toggle="modal" data-target = "#moda3">
+        		</div>
+        		<div class = "col-6 col-md-3">
+        			<img th:if ="${article['articleimage4']} != null " th:src="@{/images/} + ${article['articleimage4']}" alt="[Get Picture]" class="img-fluid" type = "button" data-toggle="modal" data-target = "#moda4">
+        		</div>
+        	</div>
+		</div>
+
+<!-- モーダル(画像拡大表示)の設定 -->
+		<div class="modal" id="moda1" tabindex="-1" role="dialog" aria-labelledby="imageModalLongTitle" aria-hidden="true">
+  			<div class="modal-dialog model-xl">
+    			<div class="modal-content align-items-center">
+					<div class="modal-body">
+      					<img th:src = "@{/images/} + ${article['articleimage1']}" alt="[Get Picture]" class="img-fluid">
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="modal" id="moda2" tabindex="-1" role="dialog" aria-labelledby="imageModalLongTitle" aria-hidden="true">
+  			<div class="modal-dialog model-xl">
+    			<div class="modal-content align-items-center">
+					<div class="modal-body">
+      					<img th:src = "@{/images/} + ${article['articleimage2']}" alt="[Get Picture]" class="img-fluid">
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="modal" id="moda3" tabindex="-1" role="dialog" aria-labelledby="imageModalLongTitle" aria-hidden="true">
+  			<div class="modal-dialog model-xl">
+    			<div class="modal-content align-items-center">
+					<div class="modal-body">
+      					<img th:src = "@{/images/} + ${article['articleimage3']}" alt="[Get Picture]" class="img-fluid">
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="modal" id="moda4" tabindex="-1" role="dialog" aria-labelledby="imageModalLongTitle" aria-hidden="true">
+  			<div class="modal-dialog model-xl">
+    			<div class="modal-content align-items-center">
+					<div class="modal-body">
+      					<img th:src = "@{/images/} + ${article['articleimage4']}" alt="[Get Picture]" class="img-fluid">
+					</div>
+				</div>
+			</div>
+		</div>
+<!-- モーダルの設定 -->
+
+    </body>
+</html>

@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>記事一覧</title>
+        <!-- CSS読み込み(Bootstrapとrutsubosuki汎用設定) -->
+<link href="css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="../css/rutsubosukistyle.css">
+<!-- script読み込む -->
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script
+	src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+<script src="js/bootstrap.min.js"></script>
+    <style>
+    	body{background:#6C757D;}
+    </style>
+  </head>
+	<body>
+	<!-- 下部固定のナビゲーションバー -->
+	<div class="container-fluid fixed-bottom ">
+		<div class="row bg-light">
+			<div class="col-auto border-secondary border-right padding-lr-0">
+				<a class="btn text-secondary vw_c text-center" role="button" href="../">Rutsubosuki</a>
+			</div>
+			<div class="col border-secondary border-left border-right d-lg-none padding-lr-0">
+				<div class="btn-group dropup ">
+					<a class="btn text-secondary vw_c" role="button"
+						href="../article/articleEdit">編集</a>
+					<div role="button"
+						class="btn btn-sm col-auto text-secondary dropdown-toggle dropdown-toggle-split"
+						data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						<span class="sr-only">編集メニュー</span>
+					</div>
+					<div class="dropdown-menu">
+						<a class="dropdown-item" href="../article/articleEdit">記事編集</a> <a
+							class="dropdown-item" href="../image/imageEdit">画像編集</a> <a
+							class="dropdown-item" href="../tag/tagEdit">タグ編集</a>
+					</div>
+				</div>
+			</div>
+			<div class="col border-secondary border-left border-right d-lg-none padding-lr-0 bg-secondary">
+				<div class="btn-group dropup">
+					<a class="btn text-light vw_c" role="button"
+						href="../article">一覧</a>
+					<div role="button"
+						class="btn btn-sm text-secondary dropdown-toggle dropdown-toggle-split text-light"
+						data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						<span class="sr-only">一覧メニュー</span>
+					</div>
+					<div class="dropdown-menu">
+						<a class="dropdown-item" href="../article">記事一覧</a> <a
+							class="dropdown-item" href="../image">画像一覧</a> <a
+							class="dropdown-item" href="../tag">タグ一覧</a>
+					</div>
+				</div>
+			</div>
+			<div
+				class="col border-secondary border-left border-right d-none d-lg-block">
+				<a class="btn text-secondary text-truncate vw_c" role="button"
+					href="../article/articleEdit">記事編集</a>
+			</div>
+			<div
+				class="col border-secondary border-left border-right d-none d-lg-block">
+				<a class="btn text-secondary text-truncate vw_c" role="button"
+					href="../image/imageEdit">画像削除</a>
+			</div>
+			<div
+				class="col border-secondary border-left border-right d-none d-lg-block">
+				<a class="btn text-secondary text-truncate vw_c" role="button"
+					href="../tag/tagEdit">タグ編集</a>
+			</div>
+			<div
+				class="col border-secondary border-left border-right d-none d-lg-block">
+				<a class="btn text-secondary text-truncate vw_c" role="button"
+					href="../tag">タグ一覧</a>
+			</div>
+			<div
+				class="col border-secondary border-left border-right d-none d-lg-block">
+				<a class="btn text-secondary text-truncate vw_c" role="button"
+					href="../image">画像一覧</a>
+			</div>
+			<div
+				class="col border-secondary border-left border-right d-none d-lg-block bg-secondary">
+				<a class="btn text-light text-truncate vw_c" role="button"
+					href="../article">記事一覧</a>
+			</div>
+			<div class="col border-secondary border-left padding-lr-0">
+				<a class="btn text-secondary vw_c" role="button" href="../upload">upload</a>
+			</div>
+		</div>
+	</div>
+
+
+		<!-- カードで一覧表示 -->
+		<div class = "container-fluid no-gutter">
+		<div class = "row">
+			<div class="col-4 col-md-3 col-xl-2" th:each="article : ${articles}">
+				<a class="card" th:href="@{article/{article_id}(article_id=${article['article_id']})}">
+					<div class = "card-header text-center btn text-secondary" role = "button" th:text="${article.title}"></div>
+					<div class = "row align-items-center no-gutters img-thumbnail bg-light">
+						<img class="col-6 img-fluid" th:if ="${article['articleimage1']} != null " th:src="@{/images/} + ${article['articleimage1']}" alt="images">
+						<img class="col-6 img-fluid" th:if ="${article['articleimage2']} != null " th:src="@{/images/} + ${article['articleimage2']}" alt="images">
+						<img class="col-6 img-fluid" th:if ="${article['articleimage3']} != null " th:src="@{/images/} + ${article['articleimage3']}" alt="images">
+						<img class="col-6 img-fluid" th:if ="${article['articleimage4']} != null " th:src="@{/images/} + ${article['articleimage4']}" alt="images">
+					</div>
+				</a>
+			</div>
+		</div>
+		</div>
+
+
+
+
+
+
+    </body>
+</html>

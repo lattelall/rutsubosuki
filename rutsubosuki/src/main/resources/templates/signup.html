@@ -1,0 +1,22 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>アカウント登録</title>
+    </head>
+    <body>
+        <form action="#" th:action="@{/register}" method="post" th:object="${userForm}">
+            <div style="text-align:center">
+                <span th:if="${#fields.hasErrors('username')}" th:errors="*{username}" style="color: red"></span><br />
+                <span th:if="${#fields.hasErrors('password')}" th:errors="*{password}" style="color: red"></span><br />
+
+                <span style="display:inline-block; width:100px; text-align:right">アカウント：</span>
+                <input type="text" name="username" field="*{username}" required="required" autofocus="autofocus"/><br />
+                <span style="display:inline-block; width:100px; text-align:right">パスワード：</span>
+                <input type="password" name="password" field="*{password}" required="required" /><br />
+                <br />
+                <button type="submit">登録</button>
+            </div>
+        </form>
+    </body>
+</html>

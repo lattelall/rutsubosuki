@@ -1,0 +1,27 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>ログイン</title>
+    </head>
+    <body>
+        <form method="post" th:action="@{/login}">
+            <div style="text-align:center">
+				<!-- ここから -->
+				<div th:if="${param.complete}">
+					アカウント登録が完了しました。
+				</div>
+				<!-- ここまで -->
+                <div th:if="${param.error}" class="alert alert-danger">
+                	アカウントまたはパスワードが正しくありません。
+                </div>
+                <span style="display:inline-block; width:100px; text-align:right">アカウント：</span>
+                <input type="text" name="username" th:value="${username}" required="required" autofocus="autofocus"/><br />
+                <span style="display:inline-block; width:100px; text-align:right">パスワード：</span>
+                <input type="password" name="password" required="required" /><br />
+                <br />
+                <button type="submit">ログイン</button>
+            </div>
+        </form>
+    </body>
+</html>
